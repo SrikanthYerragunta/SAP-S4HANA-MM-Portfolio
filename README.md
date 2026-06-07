@@ -1,51 +1,42 @@
 # SAP S/4HANA Materials Management (MM) Functional Portfolio
 
-## 🏢 Enterprise Scenario: Düsseldorf Manufacturing AG
-This repository documents a complete, end-to-end sandbox implementation mirroring a multi-plant German manufacturing scenario. Built using **SAP Best Practices** and **SAP Activate** methodologies, this project demonstrates hands-on configuration across Sourcing, Procurement, Inventory Management, and Finance integration.
+## 🏢 Portfolio Project: Düsseldorf Manufacturing AG (Sandbox Scenario)
+This repository documents a complete, end-to-end functional configuration portfolio built within an SAP S/4HANA sandbox environment. Designed around a fictional precision engineering scenario, this project serves as practical proof of my hands-on module configuration capabilities, business process design skills, and functional troubleshooting competency as I transition into SAP consulting.
 
 ---
 
-## 🏗️ 1. Enterprise Structure Mapping
-The organizational hierarchy is designed to support regional supply chain operations in Germany with localized valuation loops:
-* **Company Code:** `1000` (DE Legal Entity)
-* **Manufacturing Plants:** `DM01` (Düsseldorf - Main), `DM02` (Dortmund - Production), `DM03` (Stuttgart - Logistics Hub)
-* **Purchasing Structure:** 1 Central Purchasing Organization, 3 Plant-specific Purchasing Groups.
+## 🏗️ 1. Enterprise Structure & Master Data Design
+Configured a multi-plant organizational hierarchy to model localized manufacturing and centralized procurement operations:
+* **Organizational Setup:** Mapped Company Code (`DM01`), 3 production/assembly plants (Düsseldorf, Dortmund, Stuttgart), and respective storage locations (`SL01–SL03`).
+* **Sourcing Architecture:** Configured a centralized Purchasing Organization (`DMPO`) and specialized Purchasing Groups (`DMG`).
+* **Business Partner Framework:** Configured standard S/4HANA Business Partner (`BP`) roles (`FLVN00` for Finance and `FLVN01` for Purchasing), transitioning away from legacy vendor master approaches.
 
 ---
 
 ## 🔄 2. Procure-to-Pay (P2P) Workflows & System Controls
-The core logistics cycle maps the entire document trail from requirement generation to final financial settlement:
-`Purchase Requisition (PR)` ➡️ `RFQ & Quotation Analysis` ➡️ `Purchase Order (PO)` ➡️ `Goods Receipt (MIGO)` ➡️ `Invoice Verification (MIRO)`
-
-* **Approval Governance:** Configured a 4-level classification-based release strategy for purchasing documents using traits via `CL02` and `CT04` transactions, ensuring structured compliance thresholds.
-* **Automated Replenishment:** Configured `MRP Live` workflows paired with automatic Purchase Order conversion (`ME59N`) utilizing maintained Source Lists and Info Records.
-
----
-
-## 📊 3. Valuation & Cross-Module FI-MM Integration (`OBYC`)
-To ensure seamless financial settlement and eliminate transactional posting errors, automatic account determination links have been configured as follows:
-
-
-| Transaction (Event Key) | Account Modification | Valuation Class | Target G/L Account | Description |
-| :--- | :--- | :--- | :--- | :--- |
-| **BSX** | *None* | 3000 | 200100 | Raw Materials Stock Account |
-| **WRX** | *None* | 3000 | 211200 | GR/IR Clearing Account |
-| **PRD** | PRA | 3000 | 400300 | Cost (Price) Differences Account |
-| **UMB** | *None* | 3000 | 400400 | Gain/Loss from Revaluation |
-
-* **Material Ledger Activation:** Configured actual costing architecture moving dynamically across parallel currencies (**EUR** and **USD**) to model multi-currency corporate consolidation.
-* **Special Procurement Structures:** Validated operating loops for multi-plant Stock Transport Orders (STO), Subcontracting processes (featuring Bill of Materials explosions via movement types `541`/`543`), and Consignment processing verified through `MRKO` settlements.
+Implemented a standardized procurement lifecycle, ensuring strict data flow accuracy across transactions:
+* **The Procurement Cycle:** Configured and validated document trails across Purchase Requisitions (`ME51N`), RFQs (`ME41`), Quotation Comparisons (`ME49`), Purchase Orders (`ME21N`), Goods Receipts (`MIGO`), and Invoice Verifications (`MIRO`).
+* **Pricing & Approvals:** Configured a custom pricing procedure (`ZDM01`) using the condition technique (Gross, Discount, Freight) and built a 4-level classification-based approval release strategy for purchasing documents.
+* **Automated Replenishment:** Set up basic `MRP Live` planning runs linked to automatic Purchase Order conversion (`ME59N`) via maintained Source Lists and Info Records.
 
 ---
 
-## 🛠️ L2/L3 Functional Support & Troubleshooting Framework
-This landscape includes full structural resolution paths for common implementation issues:
-1. **GR/IR Quantity/Price Mismatches:** Resolution steps for price variances exceeding tolerance limits (`OMR6`) causing `MIRO` blockages.
-2. **Release Strategy Deadlocks:** Debugging missing characteristic valuations preventing PO routing workflows.
-3. **Split Valuation Failures:** Managing inventory ledger corrections across unique batch quality segments.
+## 📊 3. Valuation & Finance Integration (`OBYC`)
+Configured automatic account determination to ensure seamless integration between Logistics (MM) and Financial Accounting (FI):
+* **Core Postings:** Mapped standard valuation classes for raw materials, semi-finished items, and finished goods to their respective G/L accounts using transaction keys **BSX** (Inventory) and **WRX** (GR/IR Clearing).
+* **Price & Variance Controls:** Configured **PRD** (Price Differences) and **GBB** (Offsetting Entries) rules to handle consumption to production orders and cost centers automatically.
+* **Material Ledger & Special Procurement:** Activated standard multi-currency inventory valuation (EUR/USD parallel tracking) and validated sandbox processes for Stock Transport Orders (STO), Subcontracting, and Vendor Consignment.
 
 ---
 
-## 📂 Repository Contents
-* `Dusseldorf_Manufacturing_AG_Blueprint.pdf` -> Full functional specification map.
-* `Configuration_Tables_Matrix.xlsx` -> Complete blueprint data spreadsheets.
+## 🛠️ 4. Functional Support & Troubleshooting Simulation
+Documented resolution steps for common Level 2/Level 3 end-user configuration issues inside the sandbox, focusing on:
+* Resolving price and quantity mismatches on the GR/IR clearing account (`MB5S` / `MR11`).
+* Debugging characteristic allocation errors that lock or break purchasing release workflows.
+* Tracking pricing condition logic issues using access sequence analysis.
+
+---
+
+## 📂 Documentation & Portfolio Files
+* 📄 `SAP_S4HANA_MM_Configuration_Blueprint.pdf` -> Full functional configuration maps.
+* 📄 `P2P_Execution_Log_and_Validation.pdf` -> Transactional test scripts and system logs.
