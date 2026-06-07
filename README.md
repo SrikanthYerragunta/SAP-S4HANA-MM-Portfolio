@@ -1,36 +1,39 @@
-# SAP S/4HANA Materials Management (MM) Functional Portfolio
+# SAP S/4HANA MM Complete End-to-End Functional Configuration Documentation
 
-## 🏢 Project Summary: Düsseldorf Manufacturing AG (Sandbox Scenario)
-This repository contains a comprehensive functional configuration and business process blueprint designed within an SAP S/4HANA sandbox environment. Built around a precision engineering corporate scenario, this portfolio serves as practical proof of my ability to design, configure, and validate end-to-end supply chain and procurement workflows. 
+This repository hosts the comprehensive functional documentation and process verification logs for **Düsseldorf Manufacturing AG (DMAG)**, a fictional sandbox-based SAP S/4HANA practice implementation created for learning and demonstration purposes. 
 
-This documentation represents a full-scale functional prototype built to bridge my extensive enterprise consulting background with hands-on SAP S/4HANA consulting capabilities.
-
----
-
-## 🔍 What to Expect in the Project Documentation
-
-The attached documentation outlines the high-level scope, design rationale, and validation results across three core functional areas:
-
-### 📁 Part 1: Baseline Enterprise Structure & Master Data Design
-A complete blueprint mapping a multi-plant manufacturing business model into a scalable SAP landscape, including:
-* **Organizational Hierarchy:** Setup of regional manufacturing, assembly, and logistics hubs alongside a centralized corporate purchasing structure.
-* **Modern Supplier Architecture:** Implementation of the standard S/4HANA Business Partner framework for localized vendor procurement and reconciliation tracking.
-* **Material Inventory Setup:** Operational view mapping and valuation controls for raw materials, semi-finished components, and finished assemblies.
-
-### 📁 Part 2: Procure-to-Pay (P2P) Workflows & Process Automation
-Detailed business process documentation verifying standard operational procurement lifecycles, including:
-* **The Procurement Trail:** End-to-end operational execution spanning requirement requests, competitive quotation comparisons, supplier selection, purchase order routing, goods tracking, and three-way match invoice verification.
-* **Governance & Pricing Controls:** Configuration rules for automated multi-level approval hierarchies for purchasing documents, and custom condition technique pricing matrixes.
-* **Special Procurement Formats:** Practical processing blueprints for Stock Transport Orders (STO) between plants, subcontractor raw component tracking, and vendor-managed consignment inventory.
-
-### 📁 Part 3: Valuation, Financial Integration & Support Blueprints
-Functional architecture notes mapping physical inventory operations straight to financial general ledgers, including:
-* **Logistics-to-Finance Integration:** Account determination mapping rules that link inventory movements, consumption paths, and valuation categories seamlessly to the corporate chart of accounts.
-* **Global Multi-Currency Valuation:** Setup of parallel currency tracking to support both localized and group corporate consolidation, managed via actual costing and period-end closing steps.
-* **Functional Support & Troubleshooting Logs:** A documented playbook simulating common Level 2/Level 3 user resolutions, focusing on resolving invoice variance holds, fixing approval strategy routing deadlocks, and clearing material ledger posting errors.
+The documentation provides a step-by-step blueprint of organizational setup, master data extension, transaction cycles, and cross-module financial integration.
 
 ---
 
-## 📂 Portfolio Documents Inside This Repository
-* 📄 `SAP_S4HANA_MM_Configuration_Blueprint.pdf` -> Core functional setup and structural design parameters.
-* 📄 `P2P_Business_Process_Validation_Log.pdf` -> Scenario test scripts, operational verification logs, and system validation steps.
+## 📂 Portfolio Structure & Scope
+
+The portfolio is divided into three distinct documentation components:
+
+### 📄 [PART 1 — MM Configuration Portfolio](./PART_1_MM_Configuration_Portfolio.pdf)
+Documents the core organizational blueprint and system setup parameters for the enterprise:
+* **Enterprise Structure:** Setup of Company Code `DM01`, Plants (`DM01` Düsseldorf, `DM02` Dortmund, `DM03` Stuttgart), Storage Locations (`SL01–SL03`), and Purchasing Organization `DMPO`.
+* **Master Data Maintenance:** Material Master configurations for `ROH`, `HALB`, and `FERT` types, and standard Business Partner vendor migration roles.
+* **System Purchasing Controls:** Configuration details for the `ZDM01` pricing schema condition technique and classification-based Purchase Order release strategies.
+* **Logistics Engine Verification:** High-level scope settings for automated replenishment planning, Stock Transport Orders (STO), Consignment, Subcontracting loops, Batch Management, Split Valuation by quality grade, and Physical Inventory cycles.
+
+### 📄 [PART 2 — P2P End-to-End Cycle](./PART_2_P2P_End_To_End_Cycle.pdf)
+Tracks the exact transactional document flow and user execution scripts within the sandbox environment:
+* **Step-by-Step Document Trail:** Functional logging mapping Purchase Requisition ➡️ Request for Quotation ➡️ Quotation Maintenance ➡️ Price Comparison Matrix ➡️ Info Record ➡️ Purchase Order ➡️ Goods Receipt (`MIGO`) ➡️ Invoice Verification (`MIRO`).
+* **Advanced Processing Formats:** Realized validation scenarios for Value Contracts, Scheduling Agreements, automated PO conversions, Parked Invoices, and Quota Arrangements.
+* **L2/L3 Functional Troubleshooting:** Playbooks addressing common support bottlenecks including GR/IR quantity/value mismatches, workflow approval strategy blocks, condition pricing errors, and system invoice holds.
+
+### 📄 [PART 3 — Material Ledger and OBYC](./PART_3_Material_Ledger_And_OBYC.pdf)
+Detail logs covering system valuation rules, financial ledger compliance, and cross-module synchronization:
+* **Material Ledger Setup:** Functional configuration for multi-currency inventory valuation tracking Company Code currency (`EUR`) and Group currency (`USD`) simultaneously.
+* **Actual Costing Framework:** Period-end variance accumulation, multi-level revaluation architecture logs, and cost component analyses.
+* **`OBYC` Automatic Account Determination:** Direct configuration rules linking materials and movement types to specific financial ledger accounts across transaction keys `BSX`, `WRX`, `PRD`, `GBB`, `FRE`, `KON`, and `INV`.
+* **Month-End Closure Sequence:** System processing order from initial clearing reviews up to final actual costing run executions.
+
+---
+
+## 💼 Contact & Candidate Highlights
+* **Target Role:** SAP S/4HANA MM Functional Consultant
+* **Location Base:** Düsseldorf Area, Germany 🇩🇪
+* **Legal Authorization:** Permanent Resident (Niederlassungserlaubnis) — No Sponsorship Required
+* **Availability Window:** 2-Week Notice Period
