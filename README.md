@@ -35,6 +35,7 @@ Material Ledger Setup: Multi currency inventory valuation in local currency (EUR
 Actual Costing: Month end variance accumulation, revaluation, and cost analysis.
 Automatic Account Determination: Linking materials and stock movements to G/L accounts using transaction keys BSX, WRX, PRD, GBB, FRE, KON, and INV.
 Month End Sequence: The processing order from clearing reviews to final costing execution.
+
 👤 About Me
 
 SAP S/4HANA MM (Sourcing & Procurement) consultant in transition, with SAP Ariba as a secondary focus, building on 15+ years of enterprise client engagement in IT services.
